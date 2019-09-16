@@ -1,0 +1,6 @@
+README:
+
+1. There's a file in the root directory of the gui-dev branch on GitHub called latent_gui_env - this has the list of conda packages needed to run the GUI and matcher.
+
+2. To run the GUI, go to the root directory of the project (LatentAFIS/) and run with:
+	python -m GUI/LatentMatcher_GUI

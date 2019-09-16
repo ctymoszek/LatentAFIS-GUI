@@ -1,0 +1,217 @@
+body{
+  min-height: inherit;
+  background-color: #97A2A2;
+  position: relative;
+}
+.row{
+  margin: 0;
+}
+.latent-option-btn{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.option-btn-col{
+  float left;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.search-btn-col{
+  padding-right: 0;
+}
+.btn-success.latent-option-btn{
+  float: right;
+}
+.resultsImg{
+  max-height: 300px;
+  height: 100%;
+  width: auto;
+  margin: 5px;
+}
+.mdl-button--raised{
+  font-weight: 400;
+  font-size: 14px;
+  background-color: white;
+  padding: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.6), 0 3px 1px -2px rgba(0, 0, 0, 0.6), 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+}
+.mateText{
+  text-align: left;
+  font-weight: bold;
+  font-size: 110%;
+}
+.scoreText{
+  float: right;
+}
+.resultsRow{
+  border-bottom: #97A2A2 solid 1px;
+  height: 50%;
+  padding-top: 5px;
+}
+.headingCol{
+  height: 100%;
+  position: relative;
+}
+
+.mdl-dialog__content {
+    padding: 0px 0px 0px 24px;
+    color: rgba(0,0,0, 0.54);
+}
+
+h3{
+  font-weight: bold;
+  font-size: 200%;
+}
+h4{
+  font-weight: bolder;
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+a {
+  color: #666666;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects; }
+  a:hover {
+    color: #848484;
+    text-decoration: underline; }
+
+#fileDlg{
+  width: 320px;
+  margin: auto;
+}
+#okButton{
+  float: right;
+}
+#searchBtn{
+  background-color: #FFFFFF;
+  width: 120px;
+  box-shadow: 0 2px 2px 0 rgba(24, 69, 59, 0.8), 0 3px 1px -2px rgba(24, 69, 59, 0.8), 0 1px 5px 0 rgba(24, 69, 59, 0.8);
+}
+#detailImgSpan{
+  max-height: 550px;
+}
+#latentImgDetail{
+  width: 90%;
+  height: auto;
+  background-size: contain;
+  background-position: 0% 0%;
+  margin: auto;
+  display: block;
+}
+#detailDlg{
+  width: 800px;
+  height: 720px;
+  padding-top: 0.5em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#detailDlgContent{
+
+}
+#detailModal{
+  margin-top: 10px;
+  width: 94%;
+  height: 100%;
+}
+#detailFileName{
+  text-align: center;
+  color: #97A2A2;
+}
+#closeBtn{
+  width: auto;
+}
+#xIconMiddle{
+  vertical-align: middle;
+}
+#resultsView{
+  background-color: #FFFFFF;
+  padding: 0;
+}
+#titleRow{
+  background-color: #18453B;
+  color: #FFFFFF;
+  border-bottom: #97A2A2 solid 2px;
+  width: 100%;
+  padding: 0 0 2px 0;
+  text-align: center;
+  height: 7.6vh;
+}
+#headingRow{
+  border-bottom: #bac8c8 solid 1px;
+  height: 6.4vh;
+}
+#resultBody{
+  height: 86vh;
+  padding-top: 10px;
+}
+#candidateList{
+  height: 100%;
+}
+#pageBtnCol{
+  position: relative;
+  height: 100%;
+}
+#pageBtnDiv{
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#viewDetailBtn{
+  width: 90%;
+}
+#upBtn{
+  margin-bottom: 5px;
+}
+#corrDlg{
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#corrDlgContent{
+  padding: 0;
+}
+#corrModal{
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+#corrImg{
+  width: 100%;
+}
+#xBtn{
+  margin: 0;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  padding: 0;
+  float: right;
+}
+#xIconTop{
+  vertical-align: top;
+}
+#corrText{
+  text-align: center;
+  font-weight: bold;
+  font-size: 110%;
+  padding: 0 20px;
+}
+#corrScoreText{
+  float: left;
+}
+#corrNumText{
+
+}
+#corrFileText{
+  float: right;
+}
+#corrBtn{
+  width: 120px;
+}

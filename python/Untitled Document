@@ -1,0 +1,12 @@
+
+Making Cuda Work With Numba
+
+Add these lines to .bashrc:
+
+export NUMBAPRO_LIBDEVICE=/usr/local/cuda/nvvm/libdevice
+export NUMBAPRO_NVVM=/usr/local/cuda/nvvm/lib64/libnvvm.so.3
+More info:
+
+http://stackoverflow.com/questions/41496299/library-nvvm-not-found-when-trying-to-use-numba
+
+

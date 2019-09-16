@@ -1,0 +1,3 @@
+python -m  cProfile -o program.prof -s cumtime extraction_Rolled.py 
+
+snakeviz program.prof

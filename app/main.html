@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MSU Latent AFIS</title>
+    <script src="js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/material.js"></script>
+    <script src="./js/socket.io.js"></script>
+    <script src="../node_modules/cropperjs/dist/cropper.js"></script>
+    <script src="../node_modules/jquery-zoom/jquery.zoom.js"></script>
+    <script src="./js/wheelzoom.js"></script>
+
+    <link rel="stylesheet" href="../node_modules/cropperjs/dist/cropper.css">
+    <link rel="stylesheet" href="./css/material.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/app.css">
+  </head>
+  <body onload="openFileDialog()">
+    <!-- Dialog for Picking Image -->
+    <dialog id="fileDlg" class="mdl-dialog">
+      <form action="" method="post">
+        <label>
+          Please select a latent fingerprint image.
+          <br>
+          <input id="inputFile" type="file" class="form-control-file" name="inputFilename">
+        </label>
+        <br>
+        <div id="okButton">
+          <button id="filePickBtn" type="submit" class="mdl-button mdl-js-button mdl-button--raised" name="okButton">OK</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Processing Modal -->
+    <dialog id="processDlg" class="mdl-dialog">
+      <div class="mdl-dialog__content">
+        <div class="container-fluid">
+          <h5>Processing Latent Print...</h5>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Detail Modal -->
+    <dialog id="detailDlg" class="mdl-dialog">
+      <div id="detailDlgContent" class="mdl-dialog__content">
+        <div id="detailModal" class="container-fluid latent-detail-view">
+          <div class="row">
+            <div class="col-lg-12">
+              <p id="detailFileName">Filename</p>
+              <div id="detailImgSpan">
+                <img src="" class="cropperImg" id="latentImgDetail">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1 option-btn-col">
+            </div>
+            <div class="col-lg-2 option-btn-col">
+              <button id="originalBtn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn">Query</button>
+            </div>
+            <div class="col-lg-2 option-btn-col">
+              <button id="OFBtn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn">Ridge Flow</button>
+            </div>
+            <div class="col-lg-2 option-btn-col">
+              <button id="minutiae1Btn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn">Minutiae 1</button>
+            </div>
+            <div class="col-lg-2 option-btn-col">
+              <button id="minutiae2Btn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn">Minutiae 2</button>
+            </div>
+            <div class="col-lg-2 option-btn-col">
+              <button id="minutiae3Btn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn">Minutiae 3</button>
+            </div>
+            <div class="col-lg-1 option-btn-col">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 text-center search-btn-col">
+              <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn">Search</button>
+              <button id="closeBtn" class="mdl-button mdl-js-button mdl-button--raised latent-option-btn"><i id="xIconMiddle" class="material-icons">close</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Searching Modal -->
+    <dialog id="searchDlg" class="mdl-dialog">
+      <div class="mdl-dialog__content">
+        <div class="container-fluid">
+          <h5>Searching Database...</h5>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Results View -->
+    <div id="resultsView" class="container-fluid">
+      <div id="titleRow" class="row">
+        <h3>MSU Latent AFIS</h3>
+      </div>
+      <div id="headingRow" class="row">
+        <div class="col-lg-2 headingCol">
+          <h4>Latent Query</h4>
+        </div>
+        <div class="col-lg-10 headingCol">
+          <h4>Candidate List</h4>
+        </div>
+      </div>
+      <div id="resultBody" class="row">
+        <div id="resultLeftCol" class="col-lg-2 text-center">
+          <input type="image" id="viewDetailBtn" class="resultsImg" src="../python/Data/Latent/001.bmp">
+        </div>
+        <div id="candidateList" class="col-lg-9">
+          <div class="row resultsRow">
+            <div class="col-lg-4">
+              <p class="mateText">
+                <span id="rankText1">Rank: 1</span>
+                <span id="scoreText1" class="scoreText">Score: 78.0</span>
+              </p>
+              <input id="resultImg1" type="image" class="resultsImg" src="">
+            </div>
+            <div class="col-lg-4">
+              <p class="mateText">
+                <span id="rankText2">Rank: 2</span>
+                <span id="scoreText2" class="scoreText">Score: 4.12</span>
+              </p>
+              <input id="resultImg2" type="image" class="resultsImg" src="">
+            </div>
+            <div class="col-lg-4">
+              <p class="mateText">
+                <span id="rankText3">Rank: 3</span>
+                <span id="scoreText3" class="scoreText">Score: 2.03</span>
+              </p>
+              <input id="resultImg3" type="image" class="resultsImg" src="">
+            </div>
+          </div>
+          <div class="row resultsRow">
+            <div class="col-lg-4">
+              <p class="mateText">
+                <span id="rankText4">Rank: 4</span>
+                <span id="scoreText4" class="scoreText">Score: 1.22</span>
+              </p>
+              <input id="resultImg4" type="image" class="resultsImg" src="">
+            </div>
+            <div class="col-lg-4">
+              <p class="mateText">
+                <span id="rankText5">Rank: 5</span>
+                <span id="scoreText5" class="scoreText">Score: 1.03</span>
+              </p>
+              <input id="resultImg5" type="image" class="resultsImg" src="">
+            </div>
+            <div class="col-lg-4">
+              <p class="mateText">
+                <span id="rankText6">Rank: 6</span>
+                <span id="scoreText6" class="scoreText">Score: 0.89</span>
+              </p>
+              <input id="resultImg6" type="image" class="resultsImg" src="">
+            </div>
+          </div>
+        </div>
+        <div id="pageBtnCol" class="col-lg-1">
+          <div id="pageBtnDiv">
+            <button id="upBtn" class="mdl-button mdl-js-button mdl-button--raised" type="button" name="pageUp"><i class="material-icons">arrow_upward</i></button>
+            <button id="downBtn" class="mdl-button mdl-js-button mdl-button--raised" type="button" name="pageDown"><i class="material-icons">arrow_downward</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Correspondence View -->
+    <dialog id="corrDlg" class="mdl-dialog">
+      <div id="corrDlgContent" class="mdl-dialog__content">
+        <div class="row">
+          <button id="xBtn" class="mdl-button mdl-js-button"><i id="xIconTop" class="material-icons">close</i></button>
+        </div>
+        <div class="row">
+          <p id="corrText">
+            <span id="corrScoreText">Score: </span>
+            <span id="corrNumText"># of Corresponding Minutiae: </span>
+            <span id="corrFileText">Filename: </span>
+          </p>
+        </div>
+        <div id="corrModal" class="container-fluid">
+          <img id="corrImg" class="cropperImg" src="">
+        </div>
+      </div>
+    </dialog>
+
+  </body>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</html>

@@ -1,0 +1,1 @@
+CuDA_VISIBLE_DEVICES=0, python src/feature_extraction_MSP.py --data_dir ~/prip-kaicao/Data/Rolled/MSP/Image_Aligned/ --model_dir /research/prip-kaicao/models/indexing/CrossEntropy/256/ --batch_size 32 --fname feature/MSP_CrossEntropy.npy --scale 0.65

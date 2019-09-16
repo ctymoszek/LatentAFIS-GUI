@@ -1,0 +1,1 @@
+python AutoEncoder2_denoising.py --gpu 0 --data '/scratch/LatentAFIS/Data/minutiae_cylinder_uint8' --log_dir '/research/prip-kaicao/AutomatedLatentRecognition/minutiae_UNet_128_2/' --model 'UNet_Model'
